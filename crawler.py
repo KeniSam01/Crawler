@@ -54,7 +54,7 @@ def hour():
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-u', dest="url", help="Link to site Crawling", nargs=1)
-parser.add_argument('-tor', dest='tor', help="Use the tool inside the TOR network (yes/no)", default='no')
+parser.add_argument('--tor', dest='tor', help="Use the tool inside the TOR network (yes/no)", default='no')
 args = parser.parse_args()
 
 site = args.url[0]
