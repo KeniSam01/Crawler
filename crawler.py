@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import re,requests,subprocess,argparse,time,requesocks
 from datetime import datetime
 
@@ -13,47 +15,16 @@ MM.           MM      ,pm9MM     VA ,V  VA ,V     MM  8M""""""   MM
 `Mb.     ,'   MM     8M   MM      VVV    VVV      MM  YM.    ,   MM     
   `"bmmmd'  .JMML.   `Moo9^Yo.     W      W     .JMML. `Mbmmd' .JMML.   ''''\033[0;0m\n'
 
-req = requesocks.session()
-req.proxies = {'http': 'socks5://127.0.0.1:9050', 'https': 'socks5://127.0.0.1:9050'}
-
-def request_tor(url):
-    page = req.get(url, headers=header)
-    text = page.text
-    return text
-
-def while_tor():
-    while True:
-
-        url = site_crawled[0]
-
-        try:
-            request_tor(url)
-
-        except:
-            site_crawled.remove(url)
-            crawled.add(url)
-            continue
-
-        html = request_tor(url)
-
-        links = re.findall(r'<a href="?\'?(https?:\/\/[^"\'>]*)', html)
-        print '\033[32m' + hour() + "[INFO] Listening pages:" + url + '\033[0;0m'
-
-        site_crawled.remove(url)
-
-        crawled.add(url)
-
-        for link in links:
-            if link not in crawled and link not in site_crawled:
-                site_crawled.append(link)
-
 def while_true():
     while True:
-
         url = site_crawled[0]
 
         try:
             req = requests.get(url, headers=header)
+            if args.tor == 'yes':
+                req = requesocks.session()
+                req.proxies = {'http': 'socks5://127.0.0.1:9050', 'https': 'socks5://127.0.0.1:9050'}
+                req = req.get(url, headers=header)
 
         except:
             site_crawled.remove(url)
@@ -63,7 +34,7 @@ def while_true():
         html = req.text
 
         links = re.findall(r'<a href="?\'?(https?:\/\/[^"\'>]*)', html)
-        print '\033[32m'+ hour() + "[INFO] Listening pages:" + url + '\033[0;0m'
+        print '\033[32m' + hour() + "[INFO] Listening pages:" + url + '\033[0;0m'
         time.sleep(0.2)
 
         site_crawled.remove(url)
@@ -106,23 +77,13 @@ header = {
 clear()
 
 try:
-    if args.tor == 'yes':
-        banner()
-        time.sleep(2)
-        print '\033[32m' + hour() + "[INFO] The tool is starting in network Tor"'\033[0;0'
-        time.sleep(1)
-        print '\033[32m' + hour() + "[INFO] Process The Crawler Start:\n"'\033[0;0'
-
-        while_tor()
-
-except KeyboardInterrupt:
-    print "\n\033[31m" + hour() + "[INFO] User Finished Process""\033[0;0m"
-    exit()
-
-try:
     banner()
-    time.sleep(2)
-    print '\033[32m'+ hour() + "[INFO] The tool is starting"'\033[0;0'
+    if args.tor == 'yes':
+        time.sleep(2)
+        print '\033[32m'+ hour() + "[INFO] The tool is starting on network the Tor"'\033[0;0'
+    else:
+        time.sleep(2)
+        print '\033[32m'+ hour() + "[INFO] The tool is starting"'\033[0;0'
     time.sleep(1)
     print '\033[32m'+ hour() + "[INFO] Process The Crawler Start:\n"'\033[0;0m'
 
