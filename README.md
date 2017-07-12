@@ -28,6 +28,6 @@ python crawler.py -u www.github.com --tor yes
 
 ### OBS: Na hora de digitar o link do site, ele não pode conter http:// ou https://
 
-### Demonstration
+### Demonstration:
 
 https://youtu.be/XJuwMj7djXU
