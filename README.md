@@ -1,5 +1,5 @@
 # Crawler
-simples WebCrawler para listar as paginas web que contenham no site
+Simple WebCrawler to listening for all webpages for the website
 
 # Install & Use
 ### Linux
@@ -14,19 +14,19 @@ $ python crawler.py 'args'
 
 # Examples
 
-### Para ajuda
+### For Help
 
 python crawler.py -h
 
-### Para Listar um WebSite
+### To listening a WebSite
 
 python crawler.py -u www.github.com
 
-### Para Listar um WebSite pela rede TOR
+### To listening for website in Tor VPN
 
 python crawler.py -u www.github.com --tor yes
 
-### OBS: Na hora de digitar o link do site, ele não pode conter http:// ou https://
+### OBS: For hour to listening, the link cannot contain http:// or https://
 
 ### Demonstration:
 
